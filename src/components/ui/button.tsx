@@ -10,7 +10,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-primary text-primary-foreground shadow hover:bg-primary/90",
+          "bg-orange-500 text-primary-foreground shadow hover:bg-orange-500/90",
         destructive:
           "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
         outline:
@@ -19,7 +19,7 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        badge: "rounded-full border bg-white text-black hover:bg-gradient-to-br from-orange-200 to-pink-200"
+        badge: "rounded-full border bg-main text-black hover:bg-gradient-to-br from-orange-200 to-pink-200"
       },
       size: {
         default: "h-9 px-4 py-2",
