@@ -9,8 +9,11 @@ import Third from './third'
 import Final from './final'
 import { Card } from '@/interfaces/card.type'
 import { toast } from '@/hooks/use-toast'
+import axios from 'axios'
+import { useRouter } from 'next/navigation'
 
 export default function CardForm() {
+  const router = useRouter()
   const [step, setStep] = useState(1)
   const [form, setForm] = useState<Card>({
     name: '',
@@ -18,9 +21,39 @@ export default function CardForm() {
     title: '',
     userName: '',
     email: '',
-    image: '',
+    image: null,
     instagram: '',
   })
+
+  const handleFinish = async () => {
+    const formData = new FormData()
+    formData.append('name', form.name)
+    formData.append('userName', form.userName)
+    formData.append('title', form.title)
+    formData.append('description', form.description)
+    formData.append('email', form.email)
+    formData.append('instagram', form.instagram as string)
+    formData.append('image', form.image as File)
+
+    const response = await axios.post('http://localhost:3333/visit-card', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+
+    const { slug, id } = response.data
+    localStorage.setItem('slug', slug)
+    const paymentResponse = await axios.post('http://localhost:3333/payment', {
+      amount: 1590,
+      currency: 'brl',
+      productId: id,
+      type: 'visit_cards'
+    })
+
+    const { payment } = paymentResponse.data
+
+    router.replace(payment)
+  }
 
   const nextStep = () => {
     if(step === 1 && form.name === '' && form.userName === '') {
@@ -33,7 +66,7 @@ export default function CardForm() {
       return
     }
 
-    if(step === 2 && form.image === '' || step === 2 && form.image === undefined) {
+    if(step === 2 && form.image === null || step === 2 && form.image === undefined) {
       toast({
         title: 'Erro',
         description: 'Selecione uma imagem',
@@ -62,9 +95,16 @@ export default function CardForm() {
       })
       return
     }
+    console.log(step)
 
+    if(step === 4){
+      handleFinish()
+      return
+    }else{
+      setStep(step + 1)
+    }
 
-    setStep(step + 1)
+    
   }
 
   const prevStep = () => {

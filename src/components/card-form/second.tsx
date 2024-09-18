@@ -20,11 +20,10 @@ export default function Second({ form, setForm }: SecondProps) {
         onChange={(e) => {
           if (!e.target.files) return
           const file = e.target.files[0]
-          const reader = new FileReader()
-          reader.onloadend = () => {
-            setForm({ ...form, image: reader.result as string })
-          }
-          reader.readAsDataURL(file)
+          setForm({ 
+            ...form, 
+            image: file 
+          })
         }}
       />
     </div>
