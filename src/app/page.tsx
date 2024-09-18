@@ -14,19 +14,19 @@ export default function Home() {
         <p className="text-2xl">Com apenas alguns cliques, você cria uma página para o seu negócio.</p>
         <div className="flex gap-4 flex-wrap">
           <div className="relative inline-block p-[2px] rounded-full bg-gradient-to-br from-orange-500 to-pink-500">
-            <Button variant={"badge"} className={`${selectedOption === 'card' && 'bg-gradient-to-br from-orange-500 to-pink-500 text-white'}`} onClick={() => setSelectedOption('card')}>
+            <Button variant={"badge"} className={`${selectedOption === 'card' ? 'bg-gradient-to-br from-orange-500 to-pink-500 text-white hover:bg-gradient-to-br' : 'bg-main text-black hover:bg-gradient-to-br from-orange-200 to-pink-200'}`} onClick={() => setSelectedOption('card')}>
               Cartão de visita digital.
               R$ 15,90
             </Button>
           </div>
           <div className="relative inline-block p-[2px] rounded-full bg-gradient-to-br from-orange-500 to-pink-500">
-            <Button variant={"badge"} className={`${selectedOption === 'site' && 'bg-gradient-to-br from-orange-500 to-pink-500 text-white'}`} onClick={() => setSelectedOption('site')}>
+            <Button variant={"badge"} className={`${selectedOption === 'site' ? 'bg-gradient-to-br from-orange-500 to-pink-500 text-white hover:bg-gradient-to-br' : 'bg-main text-black hover:bg-gradient-to-br from-orange-200 to-pink-200'}`} onClick={() => setSelectedOption('site')}>
               Página de negócio.
               R$ 49,90
             </Button>
           </div>
           <div className="relative inline-block p-[2px] rounded-full bg-gradient-to-br from-orange-500 to-pink-500">
-            <Button variant={"badge"} className={`${selectedOption === 'both' && 'bg-gradient-to-br from-orange-500 to-pink-500 text-white'}`} onClick={() => setSelectedOption('both')}>
+            <Button variant={"badge"} className={`${selectedOption === 'both' ? 'bg-gradient-to-br from-orange-500 to-pink-500 text-white hover:bg-gradient-to-br' : 'bg-main text-black hover:bg-gradient-to-br from-orange-200 to-pink-200'}`} onClick={() => setSelectedOption('both')}>
               Cartão de visita digital + Página de negócio.
               R$ 59,90
             </Button>
